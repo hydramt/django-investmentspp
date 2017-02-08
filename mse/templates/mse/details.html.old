@@ -1,0 +1,42 @@
+{% if selected_ticker %}
+<head>
+{% load static %}
+<title>{{ requested_ticker }} details</title>
+<link rel="stylesheet" type="text/css" href="{% static 'mse/style.css' %}">
+</head>
+{% load l10n %}
+{% load humanize %}
+   <table border=1px>
+   <tr>
+      <th>DATE</th>
+      <th>TICKER</th>
+      <th>VOLUME</th>
+      <th>VALUE</th>
+      <th>TRADES</th>
+      <th>HIGH</th>
+      <th>LOW</th>
+      <th>OPEN</th>
+      <th>CLOSE</th>
+      <th>CHANGE</th>
+   </tr>
+   {% for trade in selected_ticker %}
+   <tr>
+      <td>{{ trade.DATE|date:'d-m-Y H:i' }}</td>
+      <td>{{ trade.TICKER }}</td>
+      <td>{{ trade.VOLUME|intcomma }}</td>
+      <td>&euro;{{ trade.VALUE|intcomma }}</td>
+      <td>{{ trade.TRADES|intcomma }}</td>
+      <td>&euro;{{ trade.HIGH|intcomma }}</td>
+      <td>&euro;{{ trade.LOW|intcomma }}</td>
+      <td>&euro;{{ trade.OPEN|intcomma }}</td>
+      <td>&euro;{{ trade.CLOSE|intcomma }}</td>
+      <td>&euro;{{ trade.CHANGE|intcomma }}</td>
+       {% endfor %}
+    </tr>
+    </table>
+    <P>
+    <a href="chart">Chart</a>
+{% else %}
+<head><title>Error</title></head>
+   <p>Ticker {{ requested_ticker }} not found.</p>
+{% endif %}
