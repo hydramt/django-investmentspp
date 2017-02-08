@@ -26,14 +26,4 @@ execute.extend((VOLUME, VALUE, TRADES, HIGH, LOW, OPEN, CLOSE, CHANGE))
 dbdo.execute('INSERT INTO mse_trades (DATE, TICKER, VOLUME, VALUE, TRADES, HIGH, LOW, OPEN, CLOSE, CHANGE) VALUES (?,?,?,?,?,?,?,?,?,?)', execute)
               
 dbconnection.commit()
-dbconnection.close() 
-
-#print behead(mse_equities)
-
-#print(mse_equities)
-#print
-#mse_mgs = formatTable(mse_mgs_table)
-#print(mse_mgs)
-#print
-#mse_bonds = formatTable(mse_bonds_table)
-#print(mse_bonds)
+dbconnection.close()
