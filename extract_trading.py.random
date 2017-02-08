@@ -1,0 +1,39 @@
+#!/usr/bin/python
+import sqlite3
+from datetime import datetime
+from random import randint
+
+dbconnection = sqlite3.connect('/home/django/investments/db.investments')
+dbdo = dbconnection.cursor()
+dbdo.execute('CREATE TABLE IF NOT EXISTS mse_trades (id integer NOT NULL PRIMARY KEY AUTOINCREMENT, DATE datetime NOT NULL, TICKER varchar(6) NOT NULL, VOLUME integer NOT NULL, VALUE real NOT NULL, TRADES integer NOT NULL, HIGH real NOT NULL, LOW real NOT NULL, OPEN real NOT NULL, CLOSE real NOT NULL, CHANGE real NOT NULL)')
+
+curr_time=datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+y=0
+execute = list()
+execute.append(curr_time)
+execute.append('TST')
+VOLUME = randint(1,10000)
+VALUE = randint(100,200000)
+TRADES = randint(1, 50)
+HIGH = randint(5, 10)
+LOW = randint(1, 5)
+OPEN = randint(1,5)
+CLOSE = randint(1,5)
+CHANGE = randint(1,5)
+
+execute.extend((VOLUME, VALUE, TRADES, HIGH, LOW, OPEN, CLOSE, CHANGE))
+
+dbdo.execute('INSERT INTO mse_trades (DATE, TICKER, VOLUME, VALUE, TRADES, HIGH, LOW, OPEN, CLOSE, CHANGE) VALUES (?,?,?,?,?,?,?,?,?,?)', execute)
+              
+dbconnection.commit()
+dbconnection.close() 
+
+#print behead(mse_equities)
+
+#print(mse_equities)
+#print
+#mse_mgs = formatTable(mse_mgs_table)
+#print(mse_mgs)
+#print
+#mse_bonds = formatTable(mse_bonds_table)
+#print(mse_bonds)
