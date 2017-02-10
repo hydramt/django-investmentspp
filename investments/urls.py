@@ -20,9 +20,9 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^mse/', include('mse.urls')),
+    url(r'(?i)^mse/', include('mse.urls')),
     url(r'^login', auth_view.login, {'template_name': 'admin/login.html'}, name='login'),
     url(r'^logout', views.lgd_out),
     url(r'^loggedin/', views.lgd_in),
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.index),
 ]

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'mse.apps.MseConfig',
+    'homedata.apps.HomedataConfig',
     'chartit',
 ]
 

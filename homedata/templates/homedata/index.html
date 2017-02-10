@@ -1,0 +1,7 @@
+{% if exch_list %}
+<head>
+<title>Providers</title>
+  {% for exchange in exch_list %}
+    <a href="{{ exchange.EXCH }}">{{ exchange.EXCH_FULL }}</a>
+  {% endfor %}
+{% endif %}
