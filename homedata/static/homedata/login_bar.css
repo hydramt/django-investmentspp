@@ -1,0 +1,19 @@
+header {
+  height: 30px;
+  width: 100%;
+  color: #FFFFFF;
+  background-color: #000000;
+  text-align: right;
+  padding:10px 0px 0px 0px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0px 0px 10px 0px;
+}
+
+header a:visited { color: #FF00FF }

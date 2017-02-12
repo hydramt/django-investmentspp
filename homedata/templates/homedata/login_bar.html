@@ -1,0 +1,12 @@
+<head>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'homedata/login_bar.css' %}">
+</head>
+<header>
+<span style="float:left"><a href="/">Home</a></span>
+{% if user.is_authenticated %}
+  Logged in: {{user.username}} (<a href="{% url 'logout' %}?next={{request.path}}">Logout</a>)
+{% else %}
+  You are not logged in (<a href="{% url 'login' %}?next={{request.path}}">Login</a>)
+{% endif %}
+</header>

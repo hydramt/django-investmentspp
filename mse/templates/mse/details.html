@@ -4,6 +4,8 @@
 <title>{{ requested_ticker }} details</title>
 <link rel="stylesheet" type="text/css" href="{% static 'mse/style.css' %}">
 </head>
+{% include "homedata/login_bar.html" %}
+<body>
 {% load l10n %}
 {% load humanize %}
    <table border=1px>
@@ -34,9 +36,10 @@
        {% endfor %}
     </tr>
     </table>
-    <P>
+    </br>
     <a href="chart">Chart</a>
 {% else %}
 <head><title>Error</title></head>
    <p>Ticker {{ requested_ticker }} not found.</p>
 {% endif %}
+</body>

@@ -16,13 +16,16 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin, auth
 from django.contrib.auth import views as auth_view
+from django.shortcuts import render
 from . import views
+from homedata.views import index as homedata_index, login_bar as homedata_loginbar
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'(?i)^mse/', include('mse.urls')),
+    url(r'^login_bar', homedata_loginbar, name='loginbar'),
     url(r'^login', auth_view.login, {'template_name': 'admin/login.html'}, name='login'),
-    url(r'^logout', views.lgd_out),
+    url(r'^logout', views.lgd_out, name='logout'),
     url(r'^loggedin/', views.lgd_in),
-    url(r'^$', views.index),
+    url(r'^$', homedata_index),
 ]

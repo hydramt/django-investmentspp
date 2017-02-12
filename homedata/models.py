@@ -6,6 +6,7 @@ class exchanges(models.Model):
       DATE = models.DateTimeField('DATE')
       EXCH = models.CharField(max_length=10)
       EXCH_FULL = models.CharField(max_length=100)
+      ENABLED = models.BooleanField(default=True)
       class Meta:
             verbose_name = 'provider'
             verbose_name_plural = 'providers'
