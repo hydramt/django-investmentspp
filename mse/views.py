@@ -130,4 +130,4 @@ def chart_view(request, requested_ticker):
                         'text': 'Change'},
                         'crosshair': True}})
 
-    return render_to_response('mse/chart.html', {'charts': [high_low_close, trades_chart, change_chart],'requested_ticker': requested_ticker})
+    return render(request,'mse/chart.html', {'charts': [high_low_close, trades_chart, change_chart],'requested_ticker': requested_ticker})
