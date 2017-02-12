@@ -11,7 +11,7 @@
 {% load chartit %}
 {{ charts|load_charts:"high_low_close,trades_chart,change_chart" }}
 </head>
-
+{% include 'homedata/login_bar.html' %}
 <body>
 <div id="high_low_close"></div>
 <div id="trades_chart"></div>

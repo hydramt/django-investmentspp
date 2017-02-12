@@ -4,6 +4,8 @@
 </head>
 {% include "homedata/login_bar.html" %}
   {% for exchange in exch_list %}
-    <a href="{{ exchange.EXCH }}">{{ exchange.EXCH_FULL }}</a><br>
+  <ul>
+    <li><a href="{{ exchange.EXCH }}">{{ exchange.EXCH_FULL }}</a><br></li>
+  </ul>
   {% endfor %}
 {% endif %}
