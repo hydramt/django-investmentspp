@@ -3,9 +3,9 @@
 <title>Providers</title>
 </head>
 {% include "homedata/login_bar.html" %}
-  {% for exchange in exch_list %}
   <ul>
+  {% for exchange in exch_list %}
     <li><a href="{{ exchange.EXCH }}">{{ exchange.EXCH_FULL }}</a><br></li>
-  </ul>
   {% endfor %}
+  </ul>
 {% endif %}
