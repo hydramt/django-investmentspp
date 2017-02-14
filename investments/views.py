@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-@login_required(login_url='login')
+@login_required
 def lgd_in(request):
     username = request.POST.get('id_username')
     password = request.POST.get('id_password')
@@ -13,3 +13,6 @@ def lgd_in(request):
 def lgd_out(request):
     logout(request)
     return HttpResponseRedirect(request.GET.get('next','/'))
+
+def account(request):
+    return HttpResponse("Account")

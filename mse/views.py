@@ -25,7 +25,7 @@ def chart_view(request, requested_ticker):
                    'HIGH',
                    'LOW',
                    'OPEN',
-                   'CLOSE']
+                   'CLOSE'],
                  }
                ])
     high_low_close = Chart(
@@ -42,7 +42,6 @@ def chart_view(request, requested_ticker):
                {'options':{
                   'type': 'line',
                   'stacking': False,
-                  #'marker':{ 'enabled': False },
                   'color': 'darkred'},
                 'terms': {
                   'DATE': [
@@ -50,6 +49,7 @@ def chart_view(request, requested_ticker):
                 }},
                {'options':{
                   'type': 'line',
+                  'stacking': False,
                   'color': 'lightblue'},
                 'terms': {
                   'DATE': [
@@ -62,7 +62,7 @@ def chart_view(request, requested_ticker):
                 'terms': {
                   'DATE': [
                        'CLOSE']
-                }}
+                }},
                  ],
           chart_options =
                {'tooltip': {
@@ -76,7 +76,13 @@ def chart_view(request, requested_ticker):
                 'yAxis': {
                    'title': {
                        'text': 'Amount'},
-                       'crosshair':True}})
+                       'crosshair':True},
+                'plotOptions':{
+                   'series':{
+                       'marker':{
+                           'enabled': False,
+                           'symbol': 'circle',
+                           'radius': 1}}}})
 
 
     trades_chart = Chart(
@@ -102,7 +108,13 @@ def chart_view(request, requested_ticker):
                  'yAxis': {
                     'title': {
                         'text': 'Trades'},
-                        'crosshair': True}})
+                        'crosshair': True},
+                 'plotOptions':{
+                        'series':{
+                            'marker':{
+                               'symbol': 'circle',
+                               'radius': 1,
+                               'enabled': False}}}})
 
 
     change_chart = Chart(
@@ -112,10 +124,10 @@ def chart_view(request, requested_ticker):
                    'type': 'line',
                    'color': 'black',
                    'stacking': False},
-                 'terms':{
-                   'DATE': [
-                        'CHANGE']
-                     }}],
+                   'terms':{
+                     'DATE': [
+                          'CHANGE']
+                       }}],
            chart_options =
                 {'tooltip': {
                     'shared': 'true' },
@@ -124,10 +136,20 @@ def chart_view(request, requested_ticker):
                  'xAxis': {
                     'title': {
                         'text': 'Date'},
-                        'crosshair': True},
+                    'crosshair': True},
                  'yAxis': {
                     'title': {
                         'text': 'Change'},
-                        'crosshair': True}})
+                    'crosshair': True,
+                    'plotLines': [{
+                        'value': 0,
+                        'zIndex': '3'
+                        }]},
+                 'plotOptions': {
+                    'series': {
+                        'marker': {
+                           'symbol': 'circle',
+                           'radius': 1,
+                           'enabled': False}}}})
 
     return render(request,'mse/chart.html', {'charts': [high_low_close, trades_chart, change_chart],'requested_ticker': requested_ticker})

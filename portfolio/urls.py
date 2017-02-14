@@ -18,16 +18,8 @@ from django.contrib import admin, auth
 from django.contrib.auth import views as auth_view
 from django.shortcuts import render
 from . import views
-from homedata.views import index as homedata_index, login_bar as homedata_loginbar, profile as profile
+from homedata.views import index as homedata_index, login_bar as homedata_loginbar
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'(?i)^mse/', include('mse.urls')),
-    url(r'^portfolio/', include('portfolio.urls')),
-    url(r'^login_bar', homedata_loginbar, name='loginbar'),
-    url(r'^login', auth_view.login, {'template_name': 'admin/login.html'}, name='login'),
-    url(r'^logout', views.lgd_out, name='logout'),
-    url(r'^loggedin/', views.lgd_in),
-    url(r'^account/', profile, name='account'),
-    url(r'^$', homedata_index),
+    url(r'^$', views.index, name='portfolio_index'),
 ]

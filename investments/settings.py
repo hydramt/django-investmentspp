@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'mse.apps.MseConfig',
     'homedata.apps.HomedataConfig',
     'chartit',
+    'portfolio.apps.PortfolioConfig',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,4 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
+LOGIN_URL='/login'

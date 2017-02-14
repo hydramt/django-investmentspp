@@ -4,9 +4,11 @@
 </head>
 <header>
 <span style="float:left"><a href="/">Home</a></span>
+<span style="float:right">
 {% if user.is_authenticated %}
-  Logged in: {{user.username}} (<a href="{% url 'logout' %}?next={{request.path}}">Logout</a>)
+Logged in as: {{user.username}} (<a href="{% url 'account' %}">Account</a> | <a href="{% url 'logout' %}?next={{request.path}}">Logout</a>)
 {% else %}
-  You are not logged in (<a href="{% url 'login' %}?next={{request.path}}">Login</a>)
+You are not logged in (<a href="{% url 'login' %}?next={{request.path}}">Login</a>)
 {% endif %}
+</span>
 </header>
