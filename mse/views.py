@@ -25,7 +25,8 @@ def chart_view(request, requested_ticker):
                    'HIGH',
                    'LOW',
                    'OPEN',
-                   'CLOSE'],
+                   'CLOSE',
+                   'VOLUME'],
                  }
                ])
     high_low_close = Chart(
@@ -132,7 +133,7 @@ def chart_view(request, requested_ticker):
                 {'tooltip': {
                     'shared': 'true' },
                  'title': {
-                    'text': '%s Change' % requested_ticker},
+                    'text': '%s Change' % requested_ticker },
                  'xAxis': {
                     'title': {
                         'text': 'Date'},
@@ -151,5 +152,31 @@ def chart_view(request, requested_ticker):
                            'symbol': 'circle',
                            'radius': 1,
                            'enabled': False}}}})
+    
+    volume_chart = Chart(
+           datasource = tickerdata,
+           series_options =
+               [{'options':{
+                   'type': 'line',
+                   'color': 'black',
+                   'stacking': False},
+                 'terms':{
+                   'DATE': [
+                        'VOLUME']
+                      }}],
+           chart_options=
+               {'title': {
+                   'text': '%s Volume' % requested_ticker},
+                'xAxis': {
+                    'title': { 'text': 'Date' },
+                    'crosshair': True},
+                'yAxis': {
+                    'title': { 'text': 'Volume' }},
+                'plotOptions':{
+                    'series':{
+                        'marker':{
+                              'symbol': 'circle',
+                              'radius': 1,
+                              'enabled': False}}}})
 
-    return render(request,'mse/chart.html', {'charts': [high_low_close, trades_chart, change_chart],'requested_ticker': requested_ticker})
+    return render(request,'mse/chart.html', {'charts': [high_low_close, trades_chart, change_chart, volume_chart],'requested_ticker': requested_ticker})
