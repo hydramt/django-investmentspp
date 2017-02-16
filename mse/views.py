@@ -2,15 +2,18 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse
 from .models import trades
 from chartit import DataPool, Chart
+from investments.utils import get_links
 
 def index(request):
     ticker_list = trades.objects.values('TICKER').order_by('TICKER').distinct()
-    context = {'ticker_list': ticker_list}
+    links = get_links(request.path)
+    context = {'ticker_list': ticker_list, 'links': links}
     return render(request, 'mse/index.html', context) 
 
 def details(request, requested_ticker):
     selected_ticker = trades.objects.order_by('DATE').filter(TICKER=requested_ticker)
-    context = {'selected_ticker': selected_ticker, 'requested_ticker': requested_ticker}
+    links = get_links(request.path)
+    context = {'selected_ticker': selected_ticker, 'requested_ticker': requested_ticker, 'links': links}
     return render(request, 'mse/details.html', context)
     
 def chart_view(request, requested_ticker):
@@ -179,4 +182,7 @@ def chart_view(request, requested_ticker):
                               'radius': 1,
                               'enabled': False}}}})
 
-    return render(request,'mse/chart.html', {'charts': [high_low_close, trades_chart, change_chart, volume_chart],'requested_ticker': requested_ticker})
+    links = get_links(request.path)
+
+    context = {'charts': [high_low_close, trades_chart, change_chart, volume_chart], 'requested_ticker': requested_ticker, 'links': links}
+    return render(request,'mse/chart.html', context)
