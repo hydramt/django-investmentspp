@@ -1,11 +1,9 @@
-{% if exch_list %}
 <head>
 <title>Providers</title>
 </head>
-{% include "homedata/login_bar.html" %}
+{% include "loginbar/login_bar.html" %}
   <ul>
   {% for exchange in exch_list %}
     <li><a href="{{ exchange.EXCH }}">{{ exchange.EXCH_FULL }}</a><br></li>
   {% endfor %}
   </ul>
-{% endif %}
