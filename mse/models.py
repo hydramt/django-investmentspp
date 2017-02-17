@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from django.db import models
 
 class trades(models.Model):
+      CREATED = models.DateTimeField('CREATED', auto_now_add=True)
+      MODIFIED = models.DateTimeField('MODIFIED', auto_now=True)
       DATE = models.DateTimeField('DATE')
       TICKER = models.CharField(max_length=6)
       VOLUME = models.IntegerField()

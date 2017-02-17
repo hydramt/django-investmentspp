@@ -11,7 +11,7 @@ def index(request):
     return render(request, 'mse/index.html', context) 
 
 def details(request, requested_ticker):
-    selected_ticker = trades.objects.order_by('DATE').filter(TICKER=requested_ticker)
+    selected_ticker = trades.objects.order_by('DATE').filter(TICKER__iexact=requested_ticker)
     links = get_links(request.path)
     context = {'selected_ticker': selected_ticker, 'requested_ticker': requested_ticker, 'links': links}
     return render(request, 'mse/details.html', context)
