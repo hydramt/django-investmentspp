@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'homedata.apps.HomedataConfig',
     'chartit',
     'portfolio.apps.PortfolioConfig',
+    'loginbar.apps.LoginbarConfig',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'investments.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, 'investments/templates').replace('\\','/')],
+        'DIRS': [ os.path.join(BASE_DIR, 'investments/templates').replace('\\','/'), os.path.join(BASE_DIR, 'loginbar/templates').replace('\\','/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
