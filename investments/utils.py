@@ -6,7 +6,6 @@ def get_links(request):
     temp2 = ['']
     for x in temp:
       temp2.append('%s/%s' % (temp2[-1], x))
-    #text = temp
     hrefs = temp2[1:]
     linkdump = mapping.objects.values()
     links = []
@@ -19,5 +18,4 @@ def get_links(request):
           temptext = ''
         else:
           links = links + [{'uri': x, 'text': x.split('/')[-1]}]
-    #links = mapping.objects.values('uri','text').filter(uri__in=hrefs)
     return links
