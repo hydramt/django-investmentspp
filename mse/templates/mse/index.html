@@ -1,7 +1,10 @@
 <head>
 <title>Available Securities: MSE</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'homedata/style.css' %}">
 </head>
 {% include "loginbar/login_bar.html" %}
+<body>
 {% if ticker_list %}
    <ul>
        {% for trade in ticker_list %}
@@ -11,3 +14,4 @@
 {% else %}
    <p>No trades found in database.</p>
 {% endif %}
+</body>

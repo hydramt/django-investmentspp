@@ -1,9 +1,13 @@
 <head>
+{% load static %}
 <title>Providers</title>
+<link rel="stylesheet" type="text/css" href="{% static 'homedata/style.css' %}">
 </head>
 {% include "loginbar/login_bar.html" %}
+<body>
   <ul>
   {% for exchange in exch_list %}
     <li><a href="{{ exchange.EXCH }}">{{ exchange.EXCH_FULL }}</a><br></li>
   {% endfor %}
   </ul>
+</body>

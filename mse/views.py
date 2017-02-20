@@ -71,6 +71,8 @@ def chart_view(request, requested_ticker):
           chart_options =
                {'tooltip': {
                    'shared': True },
+                'credits': {
+                   'enabled': False },
                 'title': {
                    'text': '%s High/Open/Low/Close' % requested_ticker},
                 'xAxis': {
@@ -103,6 +105,8 @@ def chart_view(request, requested_ticker):
            chart_options =
                 {'tooltip': {
                     'shared': 'true'},
+                 'credits': {
+                    'enabled': False},
                  'title': {
                     'text': '%s Trades' % requested_ticker},
                  'xAxis': {
@@ -135,6 +139,8 @@ def chart_view(request, requested_ticker):
            chart_options =
                 {'tooltip': {
                     'shared': 'true' },
+                 'credits': {
+                    'enabled': False},
                  'title': {
                     'text': '%s Change' % requested_ticker },
                  'xAxis': {
@@ -170,6 +176,8 @@ def chart_view(request, requested_ticker):
            chart_options=
                {'title': {
                    'text': '%s Volume' % requested_ticker},
+                'credits': {
+                    'enabled': False},
                 'xAxis': {
                     'title': { 'text': 'Date' },
                     'crosshair': True},

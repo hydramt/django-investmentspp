@@ -16,4 +16,6 @@ html, body {
   padding: 0px 0px 10px 0px;
 }
 
-header a:visited { color: #FF00FF }
+/*header a { color: #7777FF }*/
+header a { color: #FF3975 }
+header a:visited { color: #FF7539 }
