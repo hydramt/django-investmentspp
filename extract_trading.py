@@ -69,14 +69,18 @@ curr_time=datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
 y=0
 execute = list()
 execute.append(curr_time)
+execute.append(curr_time)
+execute.append(curr_time)
 for x in behead(mse_equities).split("#"):
       if x != None:
            y+=1
            if (y == 9):
               execute.append(x.strip())
-              dbdo.execute('INSERT INTO mse_trades (DATE, TICKER, VOLUME, VALUE, TRADES, HIGH, LOW, OPEN, CLOSE, CHANGE) VALUES (?,?,?,?,?,?,?,?,?,?)', execute)
+              dbdo.execute('INSERT INTO mse_trades (DATE, CREATED, MODIFIED, TICKER, VOLUME, VALUE, TRADES, HIGH, LOW, OPEN, CLOSE, CHANGE) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)', execute)
               y=0
               del execute[:]
+              execute.append(curr_time)
+              execute.append(curr_time)
               execute.append(curr_time)
 
            else:

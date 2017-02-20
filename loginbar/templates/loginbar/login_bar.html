@@ -1,9 +1,9 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'homedata/login_bar.css' %}">
 <header>
-<span style="float:left"><a href="/">>> Home </a>
-{% for text, hrefs in links %}
-<a href="http://django.hydra.to{{hrefs}}">>> {{text}}</a>
+<span style="float:left"><a href="/">>> Home</a>
+{% for link in links %}
+<a href="http://django.hydra.to{{link.uri}}">>> {{link.text}}</a>
 {% endfor %}
 </span>
 <span style="float:right">
