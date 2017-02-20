@@ -3,7 +3,7 @@
 <header>
 <span style="float:left">
 {% for link in links %}
-<a href="http://django.hydra.to{{link.uri}}">>> {{link.text}}</a>
+<a href="{{link.uri}}">>> {{link.text}}</a>
 {% endfor %}
 </span>
 <span style="float:right">
