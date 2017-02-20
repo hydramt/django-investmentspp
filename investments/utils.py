@@ -7,8 +7,15 @@ def get_links(request):
     for x in temp:
       temp2.append('%s/%s' % (temp2[-1], x))
     hrefs = temp2[1:]
-    linkdump = mapping.objects.values()
-    links = []
+    linkdump = mapping.objects.values().filter(enabled=True)
+    thometext = mapping.objects.filter(uri='/$', enabled=True).values('text')
+    if thometext:
+      for x in thometext:
+          hometext = x['text']
+    else:
+      hometext="Home"
+    links = [{'uri': '/', 'text': hometext}]
+    temptext= []
     for x in hrefs:
         for y in linkdump:
           if re.match(y['uri'], x, re.IGNORECASE):
