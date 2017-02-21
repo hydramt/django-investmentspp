@@ -28,7 +28,7 @@
 }
 
 .highcharts-background {
-  fill: #ffffff;
+  fill: #999999;
 }
 
 .highcharts-plot-border, .highcharts-plot-background {
@@ -56,7 +56,8 @@
 /* Axes */
 .highcharts-axis-line {
   fill: none;
-  stroke: #ccd6eb;
+/*  stroke: #ccd6eb;*/
+  stroke: #aab4c9;
 }
 
 .highcharts-yaxis .highcharts-axis-line {
@@ -64,18 +65,19 @@
 }
 
 .highcharts-axis-title {
-  fill: #666666;
+  fill: #444444;
 }
 
 .highcharts-axis-labels {
-  fill: #666666;
+  fill: #444444;
   cursor: default;
   font-size: 0.9em;
 }
 
 .highcharts-grid-line {
   fill: none;
-  stroke: #e6e6e6;
+/*  stroke: #e6e6e6;*/
+  stroke: #777777;
 }
 
 .highcharts-xaxis-grid .highcharts-grid-line {
