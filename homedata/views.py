@@ -14,5 +14,6 @@ def login_bar(request):
 
 @login_required
 def profile(request):
-    return render(request, 'portfolio/portfolio.html')
+    context = {'links': get_links(request.path)}
+    return render(request, 'portfolio/portfolio.html', context)
 
