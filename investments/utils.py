@@ -24,5 +24,8 @@ def get_links(request):
           links = links + [{'uri': x, 'text': temptext}]
           temptext = ''
         else:
-          links = links + [{'uri': x, 'text': x.split('/')[-1]}]
+          if x.split('/')[-1].islower():
+            links = links + [{'uri': x, 'text': x.split('/')[-1].title()}]
+          else:
+            links = links + [{'uri': x, 'text': x.split('/')[-1] }]
     return links
