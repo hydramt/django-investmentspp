@@ -1,4 +1,3 @@
-{% if selected_ticker %}
 <head>
 {% load static %}
 <title>{{ requested_ticker }} details</title>
@@ -6,6 +5,7 @@
 </head>
 {% include "loginbar/login_bar.html" %}
 <body>
+{% if selected_ticker %}
 {% load l10n %}
 {% load humanize %}
    <table border=1px>
