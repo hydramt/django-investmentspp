@@ -431,7 +431,7 @@ g.highcharts-series, .highcharts-point {
 
 .highcharts-plot-line {
   fill: none;
-  stroke: #888888;
+  stroke: #444444;
   stroke-width: 2px;
 }
 

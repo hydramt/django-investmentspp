@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+#    'django_pdb',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'chartit',
     'portfolio.apps.PortfolioConfig',
     'loginbar.apps.LoginbarConfig',
+#    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -53,9 +55,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+#    'debug_toolbar.middleware.DebugToolbarMiddleware',
+#    'django_pdb.middleware.PdbMiddleware',
 ]
 
 ROOT_URLCONF = 'investments.urls'
+
+INTERNAL_IPS = [
+    '78.133.121.158',
+    '192.168.2.2',
+]
 
 TEMPLATES = [
     {

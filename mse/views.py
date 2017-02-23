@@ -37,7 +37,7 @@ def chart_view(request, requested_ticker):
           series_options =
               [{'options':{
                   'type': 'line',
-                  'color': 'darkgreen',
+                  'color': '#000000',
                   'stacking': False},
                 'terms':{
                   'DATE': [
@@ -46,7 +46,7 @@ def chart_view(request, requested_ticker):
                {'options':{
                   'type': 'line',
                   'stacking': False,
-                  'color': 'darkred'},
+                  'color': '#FF0000'},
                 'terms': {
                   'DATE': [
                        'LOW']
@@ -54,7 +54,7 @@ def chart_view(request, requested_ticker):
                {'options':{
                   'type': 'line',
                   'stacking': False,
-                  'color': 'lightblue'},
+                  'color': '#00FF00'},
                 'terms': {
                   'DATE': [
                        'OPEN']
@@ -157,9 +157,11 @@ def chart_view(request, requested_ticker):
                         }]},
                  'plotOptions': {
                     'series': {
+                        'color': '#000000',
                         'marker': {
                            'symbol': 'circle',
                            'radius': 1,
+                           'color': '#000000',
                            'enabled': False}}}})
     
     volume_chart = Chart(

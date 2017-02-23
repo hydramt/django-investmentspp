@@ -19,6 +19,7 @@ from django.contrib.auth import views as auth_view
 from django.shortcuts import render
 from . import views
 from homedata.views import index as homedata_index, login_bar as homedata_loginbar, profile as profile
+from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -31,3 +32,9 @@ urlpatterns = [
     url(r'^account/', profile, name='account'),
     url(r'^$', homedata_index),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]
