@@ -1,0 +1,21 @@
+<head>
+{% include 'loginbar/login_bar.html' %}
+<title>Register</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'homedata/style.css' %}">
+</head>
+<body>
+<div class="registrationform">
+<form action="/register/" method="post" style="display: table;">
+<p><label for="username">Username: </label><input type="text" name="username" required></p>
+<p><label for="name">First Name: </label><input type="text" name="name" required></p>
+<p><label for="surname">Last Name:</label> <input type="text" name="surname" required></p>
+<p><label for="email">Email: </label><input type="text" name="email" required></p>
+<p><label for="password">Password: </label><input type="password" name="password" required></p>
+<p><label for="password2">Re-enter Password: </label><input type="password" name="password2"required></p>
+<input type="submit" value="Register">
+{% csrf_token %}
+</form>
+</div>
+</body>
+{{requesty}}

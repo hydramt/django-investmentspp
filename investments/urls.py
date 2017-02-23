@@ -21,6 +21,7 @@ from . import views
 from homedata.views import index as homedata_index, login_bar as homedata_loginbar, profile as profile
 from django.conf import settings
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'(?i)^mse/', include('mse.urls')),
@@ -30,7 +31,9 @@ urlpatterns = [
     url(r'^logout', views.lgd_out, name='logout'),
     url(r'^loggedin/', views.lgd_in),
     url(r'^account/', profile, name='account'),
+    url(r'^register/', views.register, name='register'),
     url(r'^$', homedata_index),
+    url(r'^.well-known', views.haqqalla),
 ]
 
 if settings.DEBUG:

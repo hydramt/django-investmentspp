@@ -5,3 +5,14 @@ td { /* mse details table */
 body {
   background-color: #999999
 }
+
+.registrationform form {
+  display: table;
+}
+.registrationform p {
+  display: table-row;
+}
+.registrationform label, .registrationform input {
+  display: table-cell;
+}
+
