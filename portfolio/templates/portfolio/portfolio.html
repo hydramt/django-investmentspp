@@ -1,6 +1,10 @@
-{% include 'homedata/login_bar.html' %}
+<head>
+{% include 'loginbar/login_bar.html' %}
+</head>
+<body>
 {% if user.is_authenticated %}
 You are logged in as {{user.username}}<br>
 User id: {{user.id}}<br>
 Email: {{user.email}}
 {% endif %}
+</body>
