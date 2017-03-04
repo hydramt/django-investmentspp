@@ -184,7 +184,8 @@ def chart_view(request, requested_ticker):
                     'title': { 'text': 'Date' },
                     'crosshair': True},
                 'yAxis': {
-                    'title': { 'text': 'Volume' }},
+                    'title': { 'text': 'Volume' },
+                    'crosshair': True},
                 'plotOptions':{
                     'series':{
                         'marker':{
