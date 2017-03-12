@@ -1,10 +1,27 @@
 <head>
 {% include 'loginbar/login_bar.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'homedata/style.css' %}">
 </head>
 <body>
 {% if user.is_authenticated %}
 You are logged in as {{user.username}}<br>
 User id: {{user.id}}<br>
-Email: {{user.email}}
+Email: {{user.email}}<br>
+<br>
+{% if message %}
+{{message}}
+<br>
 {% endif %}
+Portfolio list:<br>
+{% if portfolios %}
+{% for portfolio in portfolios %}
+<a href="{{portfolio.portfolio_id}}">{{portfolio.portfolio_name}}</a><br>
+{% endfor %}
+{% else %}
+No portfolios found<br>
+{% endif %}
+{% endif %}
+<a href="add">Add</a> <a href="del">Delete</a>
 </body>
+{% include "loginbar/footer.html" %}

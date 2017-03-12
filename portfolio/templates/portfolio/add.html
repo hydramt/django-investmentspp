@@ -1,0 +1,16 @@
+<head>
+<title>Add Portfolio</title>
+{% include 'loginbar/login_bar.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'homedata/style.css' %}">
+</head>
+<body>
+<div class="addportfolioform">
+<form action="/portfolio/add_post/" method="post" style="display: table;">
+<p><label for="portfolio_name">Portfolio Name: </label><input type="text" name="portfolio_name" required></p>
+<input type="submit" value="Add">
+{% csrf_token %}
+</form>
+</div>
+</body>
+{% include "loginbar/footer.html" %}

@@ -22,4 +22,8 @@ from homedata.views import index as homedata_index, login_bar as homedata_loginb
 
 urlpatterns = [
     url(r'^$', views.index, name='portfolio_index'),
+    url(r'^add/', views.add, name='add_portfolio'),
+    url(r'^add_post/', views.add_post, name='add_post'),
+    url(r'^del/', views.del_port, name='delete_portfolio'),
+    url(r'^del_post/', views.del_post, name="del_post"),
 ]

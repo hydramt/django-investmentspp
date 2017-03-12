@@ -1,0 +1,19 @@
+<head>
+<title>Delete Portfolio</title>
+{% include 'loginbar/login_bar.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'homedata/style.css' %}">
+</head>
+<body>
+<form action="/portfolio/del_post/" method="post" style="display: table;">
+<select name="delportfolio">
+{% for portfolio in portfolios %}
+<option value="{{portfolio.portfolio_id}}">{{portfolio.portfolio_name}}</option><br>
+{% endfor %}
+</select>
+<input type="submit" value="Delete">
+{% csrf_token %}
+</form>
+</div>
+</body>
+{% include "loginbar/footer.html" %}
