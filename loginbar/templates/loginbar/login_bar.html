@@ -8,7 +8,7 @@
 </span>
 <span style="float:right">
 {% if user.is_authenticated %}
-Logged in as: {{user.username}} (<a href="{% url 'account' %}">Account</a> | <a href="{% url 'logout' %}?next={{request.path}}">Logout</a>)
+Logged in as: {{user.username}} (<a href="{% url 'portfolio_index' %}">Account</a> | <a href="{% url 'logout' %}?next={{request.path}}">Logout</a>)
 {% else %}
 You are not logged in (<a href="{% url 'login' %}?next={{request.path}}">Login</a>)
 {% endif %}
