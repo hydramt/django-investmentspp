@@ -93,10 +93,17 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
-    'investments': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.investments'),
-    },
+    'investments':{
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'OPTIONS': {
+			'options': '-c search_path=investments'
+	},
+        'PASSWORD': 'password',
+        'HOST': 'db00',
+        'PORT': '5432',
+    }
 }
 
 DATABASE_ROUTERS = ['investments.router.InvestmentRouter',]
