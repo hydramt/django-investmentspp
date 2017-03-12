@@ -7,8 +7,8 @@ import re
 
 
 class mapping(models.Model):
-      created = models.DateTimeField('created', auto_now_add=True)
-      modified = models.DateTimeField('modified', auto_now=True)
+      created = models.DateTimeField(auto_now_add=True)
+      modified = models.DateTimeField(auto_now=True)
       uri = models.CharField(max_length=1000)
       text = models.CharField(max_length=50)
       enabled = models.BooleanField(default=True)

@@ -23,16 +23,16 @@
    </tr>
    {% for trade in selected_ticker %}
    <tr>
-      <td>{{ trade.DATE|date:'d-m-Y H:i' }}</td>
-      <td>{{ trade.TICKER }}</td>
-      <td>{{ trade.VOLUME|intcomma }}</td>
-      <td>&euro;{{ trade.VALUE|intcomma }}</td>
-      <td>{{ trade.TRADES|intcomma }}</td>
-      <td>&euro;{{ trade.HIGH|intcomma }}</td>
-      <td>&euro;{{ trade.LOW|intcomma }}</td>
-      <td>&euro;{{ trade.OPEN|intcomma }}</td>
-      <td>&euro;{{ trade.CLOSE|intcomma }}</td>
-      <td>&euro;{{ trade.CHANGE|intcomma }}</td>
+      <td>{{ trade.date|date:'d-m-Y H:i' }}</td>
+      <td>{{ trade.ticker }}</td>
+      <td>{{ trade.volume|intcomma }}</td>
+      <td>&euro;{{ trade.value|intcomma }}</td>
+      <td>{{ trade.trades|intcomma }}</td>
+      <td>&euro;{{ trade.high|intcomma }}</td>
+      <td>&euro;{{ trade.low|intcomma }}</td>
+      <td>&euro;{{ trade.open|intcomma }}</td>
+      <td>&euro;{{ trade.close|intcomma }}</td>
+      <td>&euro;{{ trade.change|intcomma }}</td>
        {% endfor %}
     </tr>
     </table>
@@ -43,3 +43,4 @@
    <p>Ticker {{ requested_ticker }} not found.</p>
 {% endif %}
 </body>
+{% include "loginbar/footer.html" %}

@@ -5,13 +5,13 @@ from chartit import DataPool, Chart
 from investments.utils import get_links
 
 def index(request):
-    ticker_list = trades.objects.values('TICKER').order_by('TICKER').distinct()
+    ticker_list = trades.objects.values('ticker').order_by('ticker').distinct()
     links = get_links(request.path)
     context = {'ticker_list': ticker_list, 'links': links}
     return render(request, 'mse/index.html', context) 
 
 def details(request, requested_ticker):
-    selected_ticker = trades.objects.order_by('DATE').filter(TICKER__iexact=requested_ticker)
+    selected_ticker = trades.objects.order_by('date').filter(ticker__iexact=requested_ticker)
     links = get_links(request.path)
     context = {'selected_ticker': selected_ticker, 'requested_ticker': requested_ticker, 'links': links}
     return render(request, 'mse/details.html', context)
@@ -20,16 +20,16 @@ def chart_view(request, requested_ticker):
     tickerdata = DataPool(
             series=
               [{'options': {
-                   'source': trades.objects.order_by('DATE').filter(TICKER=requested_ticker)},
+                   'source': trades.objects.order_by('date').filter(ticker=requested_ticker)},
                 'terms': [
-                   'DATE',
-                   'CHANGE',
-                   'TRADES',
-                   'HIGH',
-                   'LOW',
-                   'OPEN',
-                   'CLOSE',
-                   'VOLUME'],
+                   'date',
+                   'change',
+                   'trades',
+                   'high',
+                   'low',
+                   'open',
+                   'close',
+                   'volume'],
                  }
                ])
     high_low_close = Chart(
@@ -40,32 +40,32 @@ def chart_view(request, requested_ticker):
                   'color': '#000000',
                   'stacking': False},
                 'terms':{
-                  'DATE': [
-                       'HIGH']
+                  'date': [
+                       'high']
                     }},
                {'options':{
                   'type': 'line',
                   'stacking': False,
                   'color': '#FF0000'},
                 'terms': {
-                  'DATE': [
-                       'LOW']
+                  'date': [
+                       'low']
                 }},
                {'options':{
                   'type': 'line',
                   'stacking': False,
                   'color': '#00FF00'},
                 'terms': {
-                  'DATE': [
-                       'OPEN']
+                  'date': [
+                       'open']
                 }},
                {'options':{
                   'type': 'line',
                   'color': 'orange',
                   'stacking': False},
                 'terms': {
-                  'DATE': [
-                       'CLOSE']
+                  'date': [
+                       'close']
                 }},
                  ],
           chart_options =
@@ -99,8 +99,8 @@ def chart_view(request, requested_ticker):
                    'color': 'black',
                    'stacking': False},
                  'terms':{
-                   'DATE': [
-                        'TRADES']
+                   'date': [
+                        'trades']
                      }}],
            chart_options =
                 {'tooltip': {
@@ -133,8 +133,8 @@ def chart_view(request, requested_ticker):
                    'color': 'black',
                    'stacking': False},
                    'terms':{
-                     'DATE': [
-                          'CHANGE']
+                     'date': [
+                          'change']
                        }}],
            chart_options =
                 {'tooltip': {
@@ -172,8 +172,8 @@ def chart_view(request, requested_ticker):
                    'color': 'black',
                    'stacking': False},
                  'terms':{
-                   'DATE': [
-                        'VOLUME']
+                   'date': [
+                        'volume']
                       }}],
            chart_options=
                {'title': {

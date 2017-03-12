@@ -8,10 +8,11 @@
 {% if ticker_list %}
    <ul>
        {% for trade in ticker_list %}
-           <li><a href="{{ trade.TICKER }}">{{ trade.TICKER }}</a></li>
+           <li><a href="{{ trade.ticker }}">{{ trade.ticker }}</a></li>
        {% endfor %}
    </ul>
 {% else %}
    <p>No trades found in database.</p>
 {% endif %}
 </body>
+{% include "loginbar/footer.html" %}

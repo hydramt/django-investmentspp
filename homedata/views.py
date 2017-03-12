@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from investments.utils import get_links
 
 def index(request):
-    exch_list = exchanges.objects.filter(ENABLED=1).values('EXCH_FULL','EXCH').order_by('EXCH_FULL').distinct()
+    exch_list = exchanges.objects.filter(enabled=1).values('exch_full','exch').order_by('exch_full').distinct()
     links = get_links(request.path)
     context = { 'exch_list': exch_list, 'links': links }
     return render(request, 'homedata/index.html', context)
