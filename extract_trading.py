@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import urllib2,re,html2text
-import sqlite3
+#import sqlite3
 import psycopg2
 from datetime import datetime
 
@@ -79,7 +79,7 @@ for x in behead(mse_equities).split("#"):
 		if (y == 9):
 			if update:
 				execute.append(x.strip())
-				dbdo.execute("INSERT INTO public.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", execute)
+				dbdo.execute("INSERT INTO investments.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", execute)
 				print "INSERT INTO public.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s)" % ','.join(execute)
 		#else:
 			#print "NOT UPDATING. Update: %s" % update
@@ -91,7 +91,7 @@ for x in behead(mse_equities).split("#"):
 
 		else:
 			if (y == 1):
-				dbdo.execute("SELECT date,trades,ticker from mse_trades where id = (select max(id) from mse_trades where ticker = '%s')" % x.strip())
+				dbdo.execute("SELECT date,trades,ticker from investments.mse_trades where id = (select max(id) from investments.mse_trades where ticker = '%s')" % x.strip())
 				temp = dbdo.fetchall()
 				if (temp[0][0].strftime('%Y') == datetime.now().strftime('%Y') and temp[0][0].strftime('%m') == datetime.now().strftime('%m') and temp[0][0].strftime('%d') == datetime.now().strftime('%d')):
 					update=False
