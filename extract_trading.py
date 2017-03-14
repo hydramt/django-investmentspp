@@ -57,7 +57,7 @@ def behead(table):
 	behead_re = re.search('- #(.*)', table, re.DOTALL)
 	return behead_re.group(1).strip()
 
-print "%s: Running extract_trading.py" % datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+print "%s: Running extract_trading.py\n" % datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 getIndex()
 extractTables()
@@ -82,7 +82,7 @@ for x in behead(mse_equities).split("#"):
 			if update:
 				execute.append(x.strip())
 				dbdo.execute("INSERT INTO investments.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", execute)
-				print "INSERT INTO investments.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s)" % ','.join(execute)
+				print "INSERT INTO investments.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s)\n" % ','.join(execute)
 		#else:
 			#print "NOT UPDATING. Update: %s" % update
 			y=0
