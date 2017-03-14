@@ -57,6 +57,8 @@ def behead(table):
 	behead_re = re.search('- #(.*)', table, re.DOTALL)
 	return behead_re.group(1).strip()
 
+print "%s: Running extract_trading.py" % datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
 getIndex()
 extractTables()
 
@@ -120,3 +122,4 @@ dbconnection.close()
 #print
 #mse_bonds = formatTable(mse_bonds_table)
 #print(mse_bonds)
+print "%s: Finished extracting." % datetime.now().strftime("%Y-%m-%d %H:%M:%S")
