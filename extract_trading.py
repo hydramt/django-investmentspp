@@ -80,7 +80,7 @@ for x in behead(mse_equities).split("#"):
 			if update:
 				execute.append(x.strip())
 				dbdo.execute("INSERT INTO investments.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", execute)
-				print "INSERT INTO public.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s)" % ','.join(execute)
+				print "INSERT INTO investments.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s)" % ','.join(execute)
 		#else:
 			#print "NOT UPDATING. Update: %s" % update
 			y=0
