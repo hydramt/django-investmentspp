@@ -3,7 +3,6 @@
 <!-- code to include the highcharts and jQuery libraries goes here -->
 <!-- load_charts filter takes a comma-separated list of id's where -->
 <!-- the charts need to be rendered to                             -->
-{% include 'loginbar/login_bar.html' %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'homedata/style.css' %}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -12,10 +11,19 @@
 {% load chartit %}
 {{ charts|load_charts:"high_low_close,trades_chart,change_chart,volume_chart" }}
 </head>
+<div class="site">
+<div class="header">
+{% include 'loginbar/login_bar.html' %}
+</div>
+<div class="content">
 <body>
 <div id="high_low_close"></div>
 <div id="change_chart"></div>
 <div id="volume_chart"></div>
 <div id="trades_chart"></div>
 </body>
+</div>
+<div class="footer">
 {% include "loginbar/footer.html" %}
+</div>
+</div>

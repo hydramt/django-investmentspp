@@ -2,8 +2,12 @@
 {% load static %}
 <title>{{ requested_ticker }} details</title>
 <link rel="stylesheet" type="text/css" href="{% static 'homedata/style.css' %}">
-{% include "loginbar/login_bar.html" %}
 </head>
+<div class="site">
+<div class="header">
+{% include "loginbar/login_bar.html" %}
+</div>
+<div class="content">
 <body>
 {% if selected_ticker %}
 {% load l10n %}
@@ -43,4 +47,8 @@
    <p>Ticker {{ requested_ticker }} not found.</p>
 {% endif %}
 </body>
+</div>
+<div class="footer">
 {% include "loginbar/footer.html" %}
+</div>
+</div>
