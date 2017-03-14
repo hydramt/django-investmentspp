@@ -1,4 +1,4 @@
-header {
+.header {
   height: 30px;
   width: 100%;
   color: #FFFFFF;
@@ -11,7 +11,7 @@ header h1 {
   margin: 0;
 }
 
-html, body {
+/*html, body {
   margin: 0;
   padding: 0px 0px 10px 0px;
 }
