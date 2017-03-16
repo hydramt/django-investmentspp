@@ -55,7 +55,10 @@ def printTable(data):   # ----- METHOD NOT CURRENTLY IN USE
 def behead(table):
 	table = table.replace("\n","#")
 	behead_re = re.search('- #(.*)', table, re.DOTALL)
-	return behead_re.group(1).strip()
+	if behead_re is None:
+		return None
+	else:
+		return behead_re.group(1).strip()
 
 print "%s: Running extract_trading.py\n" % datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
