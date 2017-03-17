@@ -14,4 +14,4 @@ class mapping(models.Model):
       enabled = models.BooleanField(default=True)
 
       def __str__(self):
-         return 'uri: %s text: %s' % (self.uri, self.text)
+         return '%s uri: %s text: %s' % (self.enabled, self.uri, self.text)
