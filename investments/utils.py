@@ -21,8 +21,9 @@ def get_links(request):
           if re.match(y['uri'], x, re.IGNORECASE):
             temptext = y['text']
         if temptext:
-          links = links + [{'uri': x, 'text': temptext}]
-          temptext = ''
+          if temptext != 'NONE':
+            links = links + [{'uri': x, 'text': temptext}]
+            temptext = ''
         else:
           if x.split('/')[-1].islower():
             links = links + [{'uri': x, 'text': x.split('/')[-1].title()}]
