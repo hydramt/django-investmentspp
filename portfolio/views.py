@@ -53,7 +53,7 @@ def view_portfolio(request, portfolio_id):
 	for x in range(0,len(holdings)):
 		for z in breakdown:
 			if z['security_id'] == holdings[i]['security_id']:
-				bd_str+="<tr><td style=\"min-width:150;text-align:right;white-space:nowrap\">Security:</td><td>%s</td><td>Quantity:</td><td style=\"text-align:right\">%s</td></tr>" % (z['security_id'],z['quantity'])
+				bd_str+="<tr><td class=\"breakdown-col1\">Security:</td><td>%s</td><td>Quantity:</td><td class=\"breakdown-col2\">%s</td></tr>" % (z['security_id'],z['quantity'])
 		nicebreakdown.append(bd_str)
 		bd_str = ''
 		i+=1
