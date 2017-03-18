@@ -22,8 +22,10 @@ from homedata.views import index as homedata_index, login_bar as homedata_loginb
 
 urlpatterns = [
     url(r'^$', views.index, name='portfolio_index'),
-    url(r'^add/', views.add, name='add_portfolio'),
-    url(r'^add_post/', views.add_post, name='add_post'),
-    url(r'^del/', views.del_port, name='delete_portfolio'),
-    url(r'^del_post/', views.del_post, name="del_post"),
+    url(r'^add/$', views.add, name='add_portfolio'),
+    url(r'^add_post/$', views.add_post, name='add_post'),
+    url(r'^del/$', views.del_port, name='delete_portfolio'),
+    url(r'^del_post/$', views.del_post, name="del_post"),
+    url(r'^view/(?P<portfolio_id>[0-9]+)/$', views.view_portfolio, name='view_portfolio'),
+    url(r'^view/(?P<portfolio_id>[0-9]+)/add_portfolio_data/$', views.add_portfolio_data, name='add_portfolio_data'),
 ]
