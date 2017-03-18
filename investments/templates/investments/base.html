@@ -1,0 +1,19 @@
+<head>
+{% load static %}
+<title>{% block title%}{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="{% static 'homedata/style.css' %}">
+</head>
+<div class="site">
+<div class="header">
+{% include "loginbar/login_bar.html" %}
+</div>
+<div class="content">
+<body>
+{% block content %}
+{% endblock %}
+</body>
+</div>
+<div class="footer">
+{% include "loginbar/footer.html" %}
+</div>
+</div>
