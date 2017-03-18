@@ -1,13 +1,8 @@
-<head>
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'homedata/style.css' %}">
-</head>
-<div class="site">
-<div class="header">
-{% include 'loginbar/login_bar.html' %}
-</div>
-<div class="content">
-<body>
+{% extends 'investments/base.html' %}
+{% block title %}
+Portfolios
+{% endblock %}
+{% block content %}
 {% if user.is_authenticated %}
 You are logged in as {{user.username}}<br>
 User id: {{user.id}}<br>
@@ -20,16 +15,11 @@ Email: {{user.email}}<br>
 Portfolio list:<br>
 {% if portfolios %}
 {% for portfolio in portfolios %}
-<a href="{{portfolio.portfolio_id}}">{{portfolio.portfolio_name}}</a><br>
+<a href="view/{{portfolio.portfolio_id}}">{{portfolio.portfolio_name}}</a><br>
 {% endfor %}
 {% else %}
 No portfolios found<br>
 {% endif %}
 {% endif %}
 <a href="add">Add</a> <a href="del">Delete</a>
-</body>
-</div>
-<div class="footer">
-{% include "loginbar/footer.html" %}
-</div>
-</div>
+{% endblock %}

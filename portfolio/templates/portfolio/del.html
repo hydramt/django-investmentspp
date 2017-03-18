@@ -1,10 +1,6 @@
-<head>
-<title>Delete Portfolio</title>
-{% include 'loginbar/login_bar.html' %}
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'homedata/style.css' %}">
-</head>
-<body>
+{% extends 'investments/base.html' %}
+{% block title %}Delete Portfolio{% endblock %}
+{% block content %}
 <form action="/portfolio/del_post/" method="post" style="display: table;">
 <select name="delportfolio">
 {% for portfolio in portfolios %}
@@ -15,5 +11,4 @@
 {% csrf_token %}
 </form>
 </div>
-</body>
-{% include "loginbar/footer.html" %}
+{% endblock %}
