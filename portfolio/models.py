@@ -22,7 +22,7 @@ class portfolio_data(models.Model):
       date = models.DateTimeField(blank=False)
       quantity = models.FloatField()
       purchase_price = models.FloatField()
-      expenses = models.FloatField()
+      expenses = models.FloatField(blank=True, null=True)
 
       class Meta:
          verbose_name = 'Portfolio Data'
