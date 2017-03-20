@@ -40,6 +40,7 @@ def del_post(request):
     context = {'message': 'Portfolio %s has been deleted.' % (portfolio_id), 'links': get_links(request.path)}
     return render(request, 'portfolio/success.html', context)
 
+@login_required
 def view_portfolio(request, portfolio_id):
 	holdings = portfolio_data.objects.values('security_id').filter(user_id=request.user.id, portfolio_id=portfolio_id).order_by('security_id').distinct()
 	summary = []
@@ -62,6 +63,7 @@ def view_portfolio(request, portfolio_id):
 	context = {'portfolio_id': portfolio_id, 'data': data, 'links': get_links(request.path), 'breakdown': breakdown, 'nicebreakdown': nicebreakdown}
 	return render(request, 'portfolio/view.html', context)
 
+@login_required
 def add_portfolio_data(request, portfolio_id):
     user_id=request.user.id
     security_id=request.POST.get('security_id')
@@ -74,4 +76,4 @@ def add_portfolio_data(request, portfolio_id):
       expenses=None
     new_data = portfolio_data(portfolio_id=portfolio_id, user_id=user_id, security_id=security_id, date=date, quantity=quantity, purchase_price=purchase_price, expenses=expenses)
     new_data.save()
-    return redirect(view_portfolio, portfolio_id=12)
+    return redirect(view_portfolio, portfolio_id=portfolio_id)
