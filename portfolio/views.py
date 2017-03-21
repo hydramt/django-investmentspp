@@ -46,7 +46,7 @@ def view_portfolio(request, portfolio_id):
 	summary = []
 	for x in holdings:
 		summary.append(portfolio_data.objects.filter(portfolio_id=portfolio_id, security_id=x['security_id']).aggregate(Sum('quantity')))
-	breakdown = portfolio_data.objects.values('security_id','quantity').filter(portfolio_id=portfolio_id, user_id=request.user.id).order_by('security_id')
+	breakdown = portfolio_data.objects.values('security_id','quantity','purchase_price','expenses').filter(portfolio_id=portfolio_id, user_id=request.user.id).order_by('security_id')
 	nicebreakdown = []
 	bd_str = ''
 	i=0
@@ -54,7 +54,11 @@ def view_portfolio(request, portfolio_id):
 	for x in range(0,len(holdings)):
 		for z in breakdown:
 			if z['security_id'] == holdings[i]['security_id']:
-				bd_str+="<tr><td class=\"breakdown-col1\">Security:</td><td>%s</td><td>Quantity:</td><td class=\"breakdown-col2\">%s</td></tr>" % (z['security_id'],z['quantity'])
+				if z['expenses'] is None:
+					expenses = 0.00;
+				else:
+					expenses = z['expenses']
+				bd_str+="<tr><td class=\"breakdown-col1\">Security:</td><td>%s</td><td>Quantity:</td><td class=\"breakdown-col2\">%s</td><td>Purchase price:</td><td class=\"breakdown-col2\">%s</td><td>Expenses:</td><td class=\"breakdown-col2\"><td>%s</td></tr>" % (z['security_id'],z['quantity'],z['purchase_price'],expenses)
 		nicebreakdown.append(bd_str)
 		bd_str = ''
 		i+=1
