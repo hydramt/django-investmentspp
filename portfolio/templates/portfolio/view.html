@@ -26,7 +26,7 @@ Viewing portfolio {{portfolio_id}}<br>
 <br>
 <div id="add_portfolio_data">
 <form action="{{request.path}}add_portfolio_data/" method="post">
-<p><label for="security_id">Security ID: </label><input type="text" name="security_id" required> <label for="date">Date: </label><input type="date" name="date" required><label for="quantity">Quantity: </label><input type=number" step="any" name="quantity" required><label for="purchase_price">Purchase Price: </label><input type="number" step=any name="purchase_price" required><label for="expenses">Expenses: <input type="number" name="expenses"><br>
+<p><label for="security_id">Security ID: </label><input type="text" name="security_id" required> <label for="date">Date: </label><input type="date" name="date" required><label for="quantity">Quantity: </label><input type=number" step="any" name="quantity" required><label for="purchase_price">Purchase Price: </label><input type="number" step=any name="purchase_price" required><label for="expenses">Expenses: <input type="number" name="expenses" step="any"><br>
 <input type="submit">
 {% csrf_token %}
 </form>
