@@ -78,40 +78,41 @@ execute = list()
 execute.append(curr_time)
 execute.append(curr_time)
 execute.append(curr_time)
-for x in behead(mse_equities).split("#"):
-	if x != None:
-		y+=1
-		if (y == 9):
-			if update:
+if behead(mse_equities) is not None:
+	for x in behead(mse_equities).split("#"):
+		if x != None:
+			y+=1
+			if (y == 9):
+				if update:
+					execute.append(x.strip())
+					dbdo.execute("INSERT INTO investments.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", execute)
+					print "INSERT INTO investments.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s)\n" % ','.join(execute)
+			#else:
+				#print "NOT UPDATING. Update: %s" % update
+				y=0
+				del execute[:]
+				execute.append(curr_time)
+				execute.append(curr_time)
+				execute.append(curr_time)
+	
+			else:
+				if (y == 1):
+					dbdo.execute("SELECT date,trades,ticker from investments.mse_trades where id = (select max(id) from investments.mse_trades where ticker = '%s')" % x.strip())
+					temp = dbdo.fetchall()
+					if (temp[0][0].strftime('%Y') == datetime.now().strftime('%Y') and temp[0][0].strftime('%m') == datetime.now().strftime('%m') and temp[0][0].strftime('%d') == datetime.now().strftime('%d')):
+						update=False
+					else:
+						update=True
+					#print "Date DB:",temp[0][0].strftime('%Y'), temp[0][0].strftime('%m'), temp[0][0].strftime('%d')
+					#print "Date OL:",temp[0][0].strftime('%Y %m %d'), temp[0][1], x.strip(), "Update:", update
+				elif (y == 4 and not update):
+					if (temp[0][1] != int(x.strip())):
+						#print "Update set to true '%s' '%s'" % (type(temp[0][1]), type(x.strip()))
+						update=True
+					#print "Variable types: %s %s" % (type(temp[0][1]), type(int(x.strip())))
+					#print "Trades DB:", temp[0][1]
+					#print "Trades OL:", x.strip(), "Update:", update
 				execute.append(x.strip())
-				dbdo.execute("INSERT INTO investments.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", execute)
-				print "INSERT INTO investments.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s)\n" % ','.join(execute)
-		#else:
-			#print "NOT UPDATING. Update: %s" % update
-			y=0
-			del execute[:]
-			execute.append(curr_time)
-			execute.append(curr_time)
-			execute.append(curr_time)
-
-		else:
-			if (y == 1):
-				dbdo.execute("SELECT date,trades,ticker from investments.mse_trades where id = (select max(id) from investments.mse_trades where ticker = '%s')" % x.strip())
-				temp = dbdo.fetchall()
-				if (temp[0][0].strftime('%Y') == datetime.now().strftime('%Y') and temp[0][0].strftime('%m') == datetime.now().strftime('%m') and temp[0][0].strftime('%d') == datetime.now().strftime('%d')):
-					update=False
-				else:
-					update=True
-				#print "Date DB:",temp[0][0].strftime('%Y'), temp[0][0].strftime('%m'), temp[0][0].strftime('%d')
-				#print "Date OL:",temp[0][0].strftime('%Y %m %d'), temp[0][1], x.strip(), "Update:", update
-			elif (y == 4 and not update):
-				if (temp[0][1] != int(x.strip())):
-					#print "Update set to true '%s' '%s'" % (type(temp[0][1]), type(x.strip()))
-					update=True
-				#print "Variable types: %s %s" % (type(temp[0][1]), type(int(x.strip())))
-				#print "Trades DB:", temp[0][1]
-				#print "Trades OL:", x.strip(), "Update:", update
-			execute.append(x.strip())
 
 dbconnection.commit()
 dbconnection.close() 
