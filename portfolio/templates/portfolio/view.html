@@ -4,9 +4,11 @@
 {% load static %}
 <script src="{% static 'homedata/jquery-3.2.0.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'homedata/jquery-ui.js' %}" type="text/javascript"></script>
-Viewing portfolio {{portfolio_id}}<br>
+{% for portfolio_name in portfolio_name %}
+Viewing portfolio: {{portfolio_name.portfolio_name}} (Current total value: &euro; {{total_value}})<br>
+{% endfor %}
 <div id="portfolio_view_table">
-{% for holding,summary,breakdown in data %}
+{% for holding,summary,breakdown,total in data %}
 <div class="data">
 <h3><table class="header-table">
 <tr>
@@ -14,6 +16,8 @@ Viewing portfolio {{portfolio_id}}<br>
 <td class="security-value">{{holding.security_id}}</td>
 <td>Quantity:</td>
 <td class="quantity-sum">{{summary.quantity__sum}}</td>
+<td>Total:</td>
+<td> &euro; {{total}}</td>
 </tr>
 </table></h3><div>
 <table class="data-breakdown">
@@ -36,5 +40,4 @@ $(".data").accordion({
    active: false,
 });
 </script>
-
 {% endblock %}
