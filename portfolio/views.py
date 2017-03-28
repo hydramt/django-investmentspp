@@ -48,12 +48,21 @@ def view_portfolio(request, portfolio_id):
 	total = []
 	total_value = int() 
 	for x in holdings:
-		close=trades.objects.values('close').filter(ticker=x['security_id']).order_by('-id')[0]['close']
+		try:
+			close=trades.objects.values('close').filter(ticker=x['security_id']).order_by('-id')[0]['close']
+		except IndexError:
+			close={'close': 'N/A'}
 		quantity=portfolio_data.objects.filter(portfolio_id=portfolio_id, security_id=x['security_id'], user_id=request.user.id).aggregate(quantity=Sum('quantity'))['quantity']
-		current_value=close*quantity
+		try:
+			current_value=close*quantity
+		except TypeError:
+			current_value='N/A'
 		summary.append(portfolio_data.objects.filter(portfolio_id=portfolio_id, security_id=x['security_id']).aggregate(Sum('quantity')))
 		total.append(current_value)
-		total_value+=current_value
+		try:
+			total_value+=current_value
+		except TypeError:
+			pass
 	breakdown = portfolio_data.objects.values('security_id','quantity','purchase_price','expenses').filter(portfolio_id=portfolio_id, user_id=request.user.id).order_by('security_id')
 	nicebreakdown = []
 	bd_str = ''
