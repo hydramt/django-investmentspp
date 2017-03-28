@@ -51,15 +51,15 @@ td.security-label {
 td.security-value {
    width: 135;
 }
-td.quantity-sum, td.breakdown-col2 {
+td.quantity-sum, td.breakdown-label1, td.breakdown-value1, td.breakdown-label2, td.breakdown-value2, td.breakdown-label3, td.breakdown-value3, td.breakdown-value4, td.breakdown-value2 {
    text-align: right;
 }
 table.data-breakdown, table.header-table {
    border: 1px;
    border-spacing: 0;
 }
-td.breakdown-col1 {
-   min-width: 150;
+td.breakdown-label1, td.breakdown-label2, td.breakdown-label3, td.breakdown-label4 {
+   min-width: 100;
    text-align: right;
    white-space: nowrap;
 }
