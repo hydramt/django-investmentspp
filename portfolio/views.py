@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .models import portfolio, portfolio_data
 from investments.utils import get_links
 from django.db.models import Sum
+from mse.models import trades
 
 @login_required(login_url='/login')
 def index(request):
@@ -44,8 +45,15 @@ def del_post(request):
 def view_portfolio(request, portfolio_id):
 	holdings = portfolio_data.objects.values('security_id').filter(user_id=request.user.id, portfolio_id=portfolio_id).order_by('security_id').distinct()
 	summary = []
+	total = []
+	total_value = int() 
 	for x in holdings:
+		close=trades.objects.values('close').filter(ticker=x['security_id']).order_by('-id')[0]['close']
+		quantity=portfolio_data.objects.filter(portfolio_id=portfolio_id, security_id=x['security_id'], user_id=request.user.id).aggregate(quantity=Sum('quantity'))['quantity']
+		current_value=close*quantity
 		summary.append(portfolio_data.objects.filter(portfolio_id=portfolio_id, security_id=x['security_id']).aggregate(Sum('quantity')))
+		total.append(current_value)
+		total_value+=current_value
 	breakdown = portfolio_data.objects.values('security_id','quantity','purchase_price','expenses').filter(portfolio_id=portfolio_id, user_id=request.user.id).order_by('security_id')
 	nicebreakdown = []
 	bd_str = ''
@@ -58,13 +66,13 @@ def view_portfolio(request, portfolio_id):
 					expenses = 0.00;
 				else:
 					expenses = z['expenses']
-				bd_str+="<tr><td class=\"breakdown-col1\">Security:</td><td>%s</td><td>Quantity:</td><td class=\"breakdown-col2\">%s</td><td>Purchase price:</td><td class=\"breakdown-col2\">%s</td><td>Expenses:</td><td class=\"breakdown-col2\"><td>%s</td></tr>" % (z['security_id'],z['quantity'],z['purchase_price'],expenses)
+				bd_str+="<tr><td class=\"breakdown-label1\">Security:</td><td class=\"breakdown-value1\">%s</td><td class=\"breakdown-label2\">Quantity:</td><td class=\"breakdown-value2\">%s</td><td class=\"breakdown-label3\">Purchase price:</td><td class=\"breakdown-value3\">%s</td><td class=\"breakdown-label4\">Expenses:</td><td class=\"breakdown-value4\">%s</td></tr>" % (z['security_id'],z['quantity'],z['purchase_price'],expenses)
 		nicebreakdown.append(bd_str)
 		bd_str = ''
 		i+=1
 	#pdb.set_trace()
-	data = zip(holdings, summary, nicebreakdown)
-	context = {'portfolio_id': portfolio_id, 'data': data, 'links': get_links(request.path), 'breakdown': breakdown, 'nicebreakdown': nicebreakdown}
+	data = zip(holdings, summary, nicebreakdown, total)
+	context = {'portfolio_id': portfolio_id, 'data': data, 'links': get_links(request.path), 'breakdown': breakdown, 'nicebreakdown': nicebreakdown, 'total_value': total_value}
 	return render(request, 'portfolio/view.html', context)
 
 @login_required
