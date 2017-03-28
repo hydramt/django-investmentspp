@@ -44,6 +44,7 @@ def del_post(request):
 @login_required
 def view_portfolio(request, portfolio_id):
 	holdings = portfolio_data.objects.values('security_id').filter(user_id=request.user.id, portfolio_id=portfolio_id).order_by('security_id').distinct()
+	portfolio_name = portfolio.objects.values('portfolio_name').filter(portfolio_id=portfolio_id)
 	summary = []
 	total = []
 	total_value = int() 
@@ -81,7 +82,7 @@ def view_portfolio(request, portfolio_id):
 		i+=1
 	#pdb.set_trace()
 	data = zip(holdings, summary, nicebreakdown, total)
-	context = {'portfolio_id': portfolio_id, 'data': data, 'links': get_links(request.path), 'breakdown': breakdown, 'nicebreakdown': nicebreakdown, 'total_value': total_value}
+	context = {'portfolio_name': portfolio_name, 'data': data, 'links': get_links(request.path), 'breakdown': breakdown, 'nicebreakdown': nicebreakdown, 'total_value': total_value}
 	return render(request, 'portfolio/view.html', context)
 
 @login_required
