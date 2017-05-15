@@ -99,10 +99,13 @@ if behead(mse_equities) is not None:
 				if (y == 1):
 					dbdo.execute("SELECT date,trades,ticker from investments.mse_trades where id = (select max(id) from investments.mse_trades where ticker = '%s')" % x.strip())
 					temp = dbdo.fetchall()
-					if (temp[0][0].strftime('%Y') == datetime.now().strftime('%Y') and temp[0][0].strftime('%m') == datetime.now().strftime('%m') and temp[0][0].strftime('%d') == datetime.now().strftime('%d')):
-						update=False
-					else:
-						update=True
+					try:
+						if (temp[0][0].strftime('%Y') == datetime.now().strftime('%Y') and temp[0][0].strftime('%m') == datetime.now().strftime('%m') and temp[0][0].strftime('%d') == datetime.now().strftime('%d')):
+							update=False
+						else:
+							update=True
+					except IndexError:
+						pass
 					#print "Date DB:",temp[0][0].strftime('%Y'), temp[0][0].strftime('%m'), temp[0][0].strftime('%d')
 					#print "Date OL:",temp[0][0].strftime('%Y %m %d'), temp[0][1], x.strip(), "Update:", update
 				elif (y == 4 and not update):
